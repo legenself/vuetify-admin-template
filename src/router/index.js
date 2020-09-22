@@ -1,14 +1,48 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
+import Dashboard from "../views/Dashboard";
+import Layout from '@/layout'
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: "/", 
+    component: Layout,
+    redirect:"/index",
+
+    children:[
+      {
+        path: "index",
+        name: "dashboard",
+        component: Dashboard, 
+        meta:{
+          title:'仪表盘'
+        },
+      } 
+    ]
+  },
+  {
+    path:"user",
+    component:Layout,
+    redirect:"/user/index",
+    meta:{
+      title:'用户'
+    },
+    children:[
+      {
+        path: "/user/index",
+        name: "user",
+        component: ()=>import ('../views/User'), 
+        meta:{
+          title:'查询'
+        },
+      } 
+    ]
+  },
+  {
+    path:"/login",
+    name:"login",
+    component:()=>import ('../views/Login.vue')
   },
   {
     path: "/about",
