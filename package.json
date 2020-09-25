@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "@microsoft/signalr": "^3.1.8",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",

@@ -47,7 +47,7 @@ axios.interceptors.response.use(
         return Promise.reject(error)
     }
 )
-export function get(url, params = {}) {
+function get(url, params = {}) {
     return new Promise((resolve, reject) => {
         axios.get(url, {
                 params: params
@@ -61,7 +61,7 @@ export function get(url, params = {}) {
     })
 }
 
-export function post(url, data = {}) {
+function post(url, data = {}) {
     return new Promise((resolve, reject) => {
         axios.post(url, data)
             .then(response => {
@@ -71,4 +71,10 @@ export function post(url, data = {}) {
             })
     })
 }
- 
+export default {
+    install:function(Vue){
+        Vue.prototype.$get=get;
+        Vue.prototype.$post=post;
+    }
+  }
+  

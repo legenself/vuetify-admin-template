@@ -5,7 +5,8 @@ const USERINFO_KEY='x-info'
 // console.log(Cookies.get(TOKEN_KEY))
 const state={
     token:Cookies.get(TOKEN_KEY),
-    userinfo:Cookies.getJSON(USERINFO_KEY)
+    userinfo:Cookies.getJSON(USERINFO_KEY),
+    msg:"",
 }
 const mutations={
     LOGIN(state,payload){
@@ -20,6 +21,9 @@ const mutations={
         state.userinfo=undefined,
         Cookies.remove(TOKEN_KEY)
         Cookies.remove(USERINFO_KEY)
+    },
+    RMESSAGE(state,payload){
+        state.msg=payload
     }
 }
 const actions={

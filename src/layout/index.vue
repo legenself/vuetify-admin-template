@@ -41,9 +41,25 @@
         single-line
       ></v-text-field>
          <v-spacer/>
-         xx已登录
+         {{userinfo.account}}已登录
     </v-app-bar>
+    <v-snackbar
+      v-model="cmsg"
+      timeout="1000"
+    >
+      {{ msg }}
 
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="cmsg = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-main>
       <v-container fluid>
         <Breadcrumbs />
@@ -59,10 +75,22 @@
 
 <script>
 import defaultSettings from "@/setting";
+import {mapGetters} from 'vuex'
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 export default {
   components: {
     Breadcrumbs
+  },
+  computed:{
+    ...mapGetters(['msg','userinfo']),
+    'cmsg':{
+      get(){
+        return this.msg
+      },
+      set(newvalue){
+        this.$store.commit('user/RMESSAGE',newvalue)
+      }
+    }
   },
   data: () => ({
     drawer: null,

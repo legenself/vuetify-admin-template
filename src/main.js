@@ -6,11 +6,12 @@ import vuetify from '@/plugins/vuetify'
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
 
-import {get,post} from '@/plugins/axios'
-Vue.prototype.$get=get;
-Vue.prototype.$post=post;
+import axios from '@/plugins/axios'
+Vue.use(axios)
  
+import signalr from '@/plugins/signalr'
 
+Vue.use(signalr)
 import './permission' // permission control
 Vue.config.productionTip = false;
 
