@@ -20,22 +20,26 @@
           >
             <v-card class="elevation-12 pa-5" >
               <v-card-text class="text-center">
-                <h1>{{defaultSettings.title}}</h1>
+                <h1>{{defaultSettings.title}} </h1>
+                <p class="text-center">用户注册</p>
               </v-card-text>
+              <v-card-subtitle></v-card-subtitle>
               <v-card-text>
                 <v-form   >
                   <v-text-field dense
-                    label="账户"
-                    name="login" outlined v-model="input.account"
+                    label="Login"
+                    name="login" outlined
                     prepend-inner-icon="fa-user"
+                    v-model="input.account"
                     type="text" 
                     solo
                   ></v-text-field>
 
                   <v-text-field dense
                     outlined
+                    v-model="input.password"
                     id="password"
-                    label="密码" v-model="input.password"
+                    label="Password"
                     name="password"
                     solo
                     prepend-inner-icon="fa-lock"
@@ -44,9 +48,9 @@
                 </v-form>
               </v-card-text>
               <v-card-actions> 
-                <v-btn  @click="submit" color="primary">登录</v-btn>
-                 <v-spacer/>
-                <v-btn to="/register" text>已有账户，去登录</v-btn>
+                <v-btn    @click="submit" color="primary">登录</v-btn>
+                <v-spacer/>
+                <v-btn to="/login" text>已有账户，去登录</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -56,24 +60,24 @@
   </v-app>
 </template>
 
-<script>
+<script> 
 import defaultSettings from '@/setting'
-import {mapMutations} from 'vuex'
+
   export default {
   
     data: () => ({ 
       defaultSettings,
-      input:{}
+      input:{},
+      msg:null,
     }),
     methods:{
-      ...mapMutations('user',['LOGIN']),
-      submit(){
-        this.$post('/api/user/login',this.input).then(res=>{
-          this.LOGIN(res)
-          this.$router.replace({path:"/"})
-        })
-      }
+        submit(){
+            this.$post('/api/user/register',this.input).then(()=>{
+                alert("注册成功")
+            })
+        }
     }
+  
   }
 </script>
 <style scoped>

@@ -1,15 +1,25 @@
 import router from './router'
-// import store from './store'
+import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 // NProgress.configure({ showSpinner: false }) 
 
-// const whiteList = ['/login', '/auth-redirect'] 
+// const whiteList = ['/login', '/regis'] 
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
-  next()
+  //if login
+  if(store.getters.token&&store.getters.token.length!=0)
+  {
+    next()
+  }else if(to.meta.noauth){
+    next()
+  }else{
+    next({ path: '/login' })
+  }
+  //else in whitelist
+  //else login
   NProgress.done() 
   // set page title
   // document.title = getPageTitle(to.meta.title)
