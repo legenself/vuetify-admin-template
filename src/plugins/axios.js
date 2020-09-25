@@ -1,7 +1,10 @@
 import axios from 'axios';
 import store from '@/store'
+import defaultSettings from "@/setting";
 axios.defaults.timeout = 5000;
-// axios.defaults.baseURL = 'http://132.232.166.224:8899/';
+
+ 
+axios.defaults.baseURL =defaultSettings.apiurl
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.get['Content-Type'] = 'application/json'
 

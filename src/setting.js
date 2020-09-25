@@ -1,6 +1,6 @@
 module.exports = {
   title: '信息管理系统',
-
+  apiurl:"http://132.232.166.224:8989",
   // /**
   //  * @type {boolean} true | false
   //  * @description Whether show the settings right-panel
